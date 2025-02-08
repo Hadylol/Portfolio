@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js" integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <title>Portfolio hehe</title>
+    </head>
+    <body>
+        <div class="container mx-auto mt-6 max-w-sm">
+            <h1 class="text-5xl mb-4">Portfolio</h1>
+            <!-- x-data -->
+            <div
+                x-data="{
+                open:false,
+                name:'hadi',
+                search:'',
+                posts:[
+                {title:'post one'},
+                {title:'post 2'},
+                {title:'post 3'},
+                {title:'post 4'},
+                ]
+                }"
+            >
+
+                <!-- x-on and x-bind-->
+                <button
+                    x-on:click="open=!open"
+                    x-bind:class="open ? 'bg-blue-400' : 'bg-slate-700'"
+                    class="text-white px-4 py-2 rounded-xl"
+                >
+                    Open
+                </button>
+                <!-- x-show -->
+                <div x-show="open" x-transition>
+                    <p class="bg-grap-200 p-4 my-6 rounded">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Illum laborum incidunt accusantium totam voluptas?
+                        Obcaecati facere ea at quo modi. Numquam consectetur
+                        tempora qui aperiam assumenda consequatur deleniti
+                        officiis neque.
+                    </p>
+                </div>
+                <!-- x-text -->
+                <div class="my-4">
+                    my name is <span x-text="name" class="font-bold"></span>
+                </div>
+
+                <!-- $dispatch-->
+                <div @notify="alert('notification')">
+                <button
+                    @click="$dispatch('notify')"
+                    class="bg-green-700 text-white p-2 mt-4 rounded-lg">
+                    Notify
+                </button>
+                </div>
+
+                <!--$data -->
+                <button @click="getLastPost($data.posts)" class="bg-orange-800 text-white mt-6 p-2 rounded-lg">
+                    get last post
+                </button>
+                <!-- x-html-->
+                <div x-html="open">..nn.</div>
+
+                <!--$el -->
+                <button x-on:click="$el.innerHTML='hello world'" class="mt-4 p-4 border">Replace text </button>
+                <!-- x-effect -->
+                <div x-effect="console.log(open)"></div>
+                <!--x-init -->
+                <div x-init="$watch('posts',value=>console.log(value))"></div>
+
+
+                <!-- x-if   -->
+                <template x-if="open">
+                    <div class="bg-gray-50 p-2 mt-8">Contents...</div>
+                </template>
+
+                <!-- x-for -->
+                <h3 class="text-2xl mt-6 mb-3 font-bold">Posts</h3>
+                <template x-for="post in posts">
+                    <div x-text="post.title">
+
+                    </div>
+                </template>
+                <button @click="posts.push({title:'New post' })"  class="bg-blue-800 text-white px-4 py-2 rounded-lg mt-4">
+                    Add Post
+                </button>
+
+                <!--x-ref -->
+                <div class="my-6">
+                <div x-ref="text">hey</div>
+                <button @click="$refs.text.remove()"
+                    class="bg-black text-white p-2 rounded-lg">
+                        remove text
+                </button>
+                </div>
+
+
+
+                <!--x-model -->
+                <input
+                    x-model="search"
+                    type="text"
+                    class="border p-2 w-full mb-2 mt-6"
+                    placeholder="Search for something..."
+                />
+                <p>
+                    <span class="font-bold">Searching for:</span>
+                    <span x-text="search"
+                </p>
+
+
+
+            </div>
+        </div>
+        <footer x-data class="text-center mt-10">
+            <p>
+                Copyright &copy <span x-text="new Date().getFullYear()"></span>
+            </p>
+        </footer>
+        <script>
+        function getLastPost(posts){
+          console.log(posts.slice(-1).pop())
+        }
+        </script>
+    </body>
+</html>

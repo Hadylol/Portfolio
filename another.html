@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+            integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+
+        <title>Stores</title>
+    </head>
+    <body>
+        <div
+            x-data
+            :class="$store.darkMode.on && 'bg-gray-800 text-white'"
+            class="container mx-auto mx-w-sm mt-6 bg-gray-50 p-4"
+        >
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum
+            laborum incidunt accusantium totam voluptas? Obcaecati facere ea at
+            quo modi. Numquam consectetur tempora qui aperiam assumenda
+            consequatur deleniti officiis neque.
+
+            <button
+                @click="$store.darkMode.toggle()"
+                :class="$store.darkMode.on && 'bg-gray-700'"
+                class="block mt-4 text-xs bg-gray-200 px-4 py-2"
+            >
+                dark mode
+            </button>
+        </div>
+        <script>
+            document.addEventListener("alpine:init", () => {
+                Alpine.store("darkMode", {
+                    on: false,
+                    toggle() {
+                        this.on = !this.on;
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

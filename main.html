@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Your Portfolio</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <style>
+            body {
+                font-family: "Fira Code", monospace;
+                background-color: #000;
+                color: #00ff00;
+            }
+            .blinking-cursor {
+                display: inline-block;
+                width: 10px;
+                height: 20px;
+                background-color: #00ff00;
+                animation: blink 1s steps(2, start) infinite;
+            }
+            @keyframes blink {
+                to {
+                    visibility: hidden;
+                }
+            }
+        </style>
+    </head>
+    <body class="p-10">
+        <!-- Header -->
+        <header>
+            <h1 class="text-4xl font-bold">
+                Hadyy@portfolio:~$ <span class="blinking-cursor"></span>
+            </h1>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="mt-10">
+            <p class="text-xl">
+                Welcome to my portfolio. Type
+                <span class="text-amber-500">'help'</span> for a list of
+                commands.
+            </p>
+            <div x-data="{ command: '', output: '' }" class="mt-6">
+                <input
+                    x-model="command"
+                    @keyup.enter="
+          if (command === 'help') {
+            output = 'Available commands: about, projects, contact';
+          } else if (command === 'about') {
+            output = 'I am a developer passionate about building retro-inspired projects.';
+          } else if (command === 'projects') {
+            output = '1. Project Alpha\n2. Project Beta\n3. Project Gamma';
+          } else if (command === 'contact') {
+            output = 'Email: user@example.com\nGitHub: github.com/user';
+          } else {
+            output = 'Command not found. Type \'help\' for a list of commands.';
+          }
+          command = '';
+        "
+                    class="w-full bg-transparent border-none outline-none text-green-500"
+                    placeholder="Type a command and press Enter..."
+                />
+                <pre
+                    x-text="output"
+                    class="mt-4 text-green-500 whitespace-pre-wrap"
+                ></pre>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mt-20">
+            <h2 class="text-3xl font-bold">about.txt</h2>
+            <p class="mt-4">
+                I am a developer with a love for Solving real world problems and
+                automate Boring tasks<br />
+                My skills include JavaScript, Python, Go lang, backend
+                devlopment,telegram and discord bots<br />
+            </p>
+            <h2 class="text-2xl mt-3 font-bold">Currently-learning.txt</h2>
+            <p class="mt-4">
+                -Ai | ML <br />
+                -
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="mt-20">
+            <h2 class="text-2xl font-bold">projects/</h2>
+            <ul class="mt-4 list-disc list-inside">
+                <li>Project Alpha - Real Estate backend system</li>
+                <li>Project Beta - graph generator telegram bot</li>
+                <li>Project Gamma - Audio to text bot</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mt-20">
+            <h2 class="text-2xl font-bold">contact.sh</h2>
+            <p class="mt-4">
+                Email: idk <br />
+                GitHub: github.com/Hadylol<br />
+                LinkedIn: not yet lol
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer x-data class="mt-20 text-center">
+            <p>
+                Copyright &copy;<span x-text="new Date().getFullYear()"></span>
+                its mine !
+            </p>
+        </footer>
+    </body>
+</html>
