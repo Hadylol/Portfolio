@@ -1,125 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Your Portfolio</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
-            rel="stylesheet"
-        />
-        <script
-            defer
-            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-        ></script>
-        <style>
-            body {
-                font-family: "Fira Code", monospace;
-                background-color: #000;
-                color: #00ff00;
-            }
-            .blinking-cursor {
-                display: inline-block;
-                width: 10px;
-                height: 20px;
-                background-color: #00ff00;
-                animation: blink 1s steps(2, start) infinite;
-            }
-            @keyframes blink {
-                to {
-                    visibility: hidden;
-                }
-            }
-        </style>
-    </head>
-    <body class="p-10">
-        <!-- Header -->
-        <header>
-            <h1 class="text-4xl font-bold">
-                Hadyy@portfolio:~$ <span class="blinking-cursor"></span>
-            </h1>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head> 
+  <body class="p-10" x-data="{open:true}" >
+     <div x-show="!open" class="flex flex-col items-center">
+      <button @click="open=!open">
+             <img  @click="open!=open" src="svgs/terminal.svg" class="w-12 h-12 filter brightness-0 invert hover:brightness-100">
+      </button>
+      <p class="mt-2">Portfolio Terminal</p>
+       </div>
+    <div x-show="open" x-transition class="rounded-sm border-double border-4 border-gray-600 border-opacity-75 p-5">
+  <button @click="open=!open" class="text-white font-bold absolute top-11 right-11 bg-red-400  p-0 rounded-sm h-5 w-5 flex items-center justify-center">X</button>
+    <div  class="">
+    <!-- Header -->
+    <header>
+      <h1 class="text-4xl font-bold">
+        Hadyy@portfolio:~$ <span class="blinking-cursor"></span>
+      </h1>
+    </header>
 
-        <!-- Hero Section -->
-        <section class="mt-10">
-            <p class="text-xl">
-                Welcome to my portfolio. Type
-                <span class="text-amber-500">'help'</span> for a list of
-                commands.
-            </p>
-            <div x-data="{ command: '', output: '' }" class="mt-6">
-                <input
-                    x-model="command"
-                    @keyup.enter="
+    <!-- Hero Section -->
+    <section class="mt-10">
+      <p class="text-xl">
+        [~]$ Welcome to my portfolio. Type
+        <span class="text-amber-500">'help'</span> for a list of commands.
+      </p>
+      <div x-data="{ command: '', output: '' }" class="mt-6">
+        <input
+          x-model="command"
+          @keyup.enter="
           if (command === 'help') {
-            output = 'Available commands: about, projects, contact';
+            output = 'Available commands:\n whoiam, about, contact';
           } else if (command === 'about') {
-            output = 'I am a developer passionate about building retro-inspired projects.';
-          } else if (command === 'projects') {
-            output = '1. Project Alpha\n2. Project Beta\n3. Project Gamma';
+            output = 'I am a developer passionate about building projects.';
+          } else if (command === 'whoiam') {
+            output = '~>Hady with a Computer Science Bachelor degree, Currently doing my masters degree on AI';
           } else if (command === 'contact') {
             output = 'Email: user@example.com\nGitHub: github.com/user';
-          } else {
+          }else if (command=='clear'){
+            output =''
+          }else {
             output = 'Command not found. Type \'help\' for a list of commands.';
           }
           command = '';
         "
-                    class="w-full bg-transparent border-none outline-none text-green-500"
-                    placeholder="Type a command and press Enter..."
-                />
-                <pre
-                    x-text="output"
-                    class="mt-4 text-green-500 whitespace-pre-wrap"
-                ></pre>
+          class="w-full bg-transparent border-none outline-none text-green-500 "
+          placeholder="Type a command and press Enter..."
+        />
+        <pre
+          x-text="output"
+          class="mt-4 text-green-500 whitespace-pre-wrap"
+        ></pre>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="mt-20">
+      <p>Hadyy@portfolio:~$ cat portfolio/about.txt</p>
+      <h2 class="text-3xl font-bold">>about.txt</h2>
+      <p class="mt-4">
+        my Name is Hady Computer Science Masters degree Student 
+        a developer with a love for Solving real World problems and
+        automate Boring Tasks<br />
+  
+    <div class="mt-10 flex-col">
+      </p>
+    <p>
+    Hadyy@portfolio:~$ skills --list | grep ./programming/skills
+    <span class="blinking-cursor"></span>
+    </p>
+      <c class="text-2xl font-bold">>My-Skills</p>
+      <div class="flex flex-col md:flex-row justify-center gap-8  m-4">
+        <div class="flex flex-col items-center">
+        <img
+          src="svgs/nodedotjs.svg"
+          alt="JavaScript"
+          class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+        />
+        <p class="mt-2">nodejs</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+        <img
+          src="svgs/python.svg"
+          alt="Python"
+          class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+        />
+        <p class="mt-2">Python</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+        <img
+          src="svgs/go.svg"
+          alt="Go"
+          class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+        />
+        <p class="mt-2">Go lang</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+        <img
+          src="svgs/telegram(1).svg"
+          alt="Telegram"
+          class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+        />
+        <p class="mt-2">Telegram API</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          <img
+            src="svgs/supabase.svg"
+            alt="supabase"
+            class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+          />
+          <p class="mt-2">Supabase</p>
+          </div>
+          <div class="flex flex-col justify-center items-center">
+            <img
+              src="svgs/express.svg"
+              alt="express"
+              class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+            />
+            <p class="mt-2">expressjs</p>
             </div>
-        </section>
+            <div class="flex flex-col justify-center items-center">
+              <img
+                src="svgs/alpinedotjs.svg"
+                alt="alpine"
+                class="w-12 h-12 filter brightness-0 invert hover:brightness-100"
+              />
+              <p class="mt-2">Alpinejs</p>
+              </div>
+      </div>
+    </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="mt-20">
-            <h2 class="text-3xl font-bold">about.txt</h2>
-            <p class="mt-4">
-                I am a developer with a love for Solving real world problems and
-                automate Boring tasks<br />
-                My skills include JavaScript, Python, Go lang, backend
-                devlopment,telegram and discord bots<br />
-            </p>
-            <h2 class="text-2xl mt-3 font-bold">Currently-learning.txt</h2>
-            <p class="mt-4">
-                -Ai | ML <br />
-                -
-            </p>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="mt-20">
-            <h2 class="text-2xl font-bold">projects/</h2>
-            <ul class="mt-4 list-disc list-inside">
-                <li>Project Alpha - Real Estate backend system</li>
-                <li>Project Beta - graph generator telegram bot</li>
-                <li>Project Gamma - Audio to text bot</li>
-            </ul>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="mt-20">
-            <h2 class="text-2xl font-bold">contact.sh</h2>
-            <p class="mt-4">
-                Email: idk <br />
-                GitHub: github.com/Hadylol<br />
-                LinkedIn: not yet lol
-            </p>
-        </section>
-
-        <!-- Footer -->
-        <footer x-data class="mt-20 text-center">
+    <!-- Projects Section -->
+    <section x-data="{ details: null }" id="projects" class="mt-20">
+      <h2 class="text-2xl font-bold">~/.local/projects/</h2>
+      <ul class="mt-4 list-disc list-inside">
+        <!-- Project Alpha -->
+        <li> Project Alpha - Real Estate backend system</li>
+        ---><button
+          x-on:click="details === 1 ? details = null : details = 1"
+          id="btn"
+        >
+          ./Details.sh
+        </button>
+        <div x-show="details === 1" x-transition class="mb-10 pl-10">
+          <div class="mt-3 mb-3">
+            <img
+                  src="svgs/github.svg"
+                alt="JavaScript"
+                class="inline-block w-12 h-12 filter brightness-0 invert hover:brightness-100"
+              />
+            <a href="github.com/Hadylol" class="underline font-bold">Source Code</a>
+          </div>
+          <p>
             <p>
-                Copyright &copy;<span x-text="new Date().getFullYear()"></span>
-                its mine !
+              ~>This backend system is a robust application built with <strong>Node.js</strong> and <strong>Express</strong>, designed to handle authentication, role-based access control, and file storage using <strong>Supabase</strong>. It includes two dashboards: one for <strong>Admins</strong> and another for <strong>Vendors</strong>, each with distinct functionalities and access levels. The system adheres to industry best practices for security, scalability, and maintainability.
+              <br><br>
+              <strong>Technical Stack:</strong>
+              <br>
+              <div class="mt-5">
+               <img
+                  src="svgs/nodedotjs.svg"
+                alt="JavaScript"
+                class="inline-block w-12 h-12 filter brightness-0 invert hover:brightness-100"
+              />
+              <img
+               src="svgs/express.svg"
+               alt="JavaScript"
+                class="inline-block w-12 h-12 filter brightness-0 invert hover:brightness-100"
+              />
+              • Backend: <strong>Node.js</strong>, <strong>Express</strong><br>
+              </div>
+              <div class="mt-5 mb-5">
+              <img
+              src="svgs/supabase.svg"
+              alt="JavaScript"
+              class="inline-block w-12 h-12 filter brightness-0 invert hover:brightness-100"
+              />
+              • Database: <strong>Supabase (PostgreSQL)</strong><br>
+              </div>
+              <div class="mt-5 mb-5">
+                <img
+                src="svgs/jsonwebtokens.svg"
+                alt="JavaScript"
+                class="inline-block w-12 h-12 filter brightness-0 invert hover:brightness-100"
+                />
+              • Authentication: <strong>JWT</strong>, <strong>bcrypt</strong><br>
+              </div>
+              • File Storage: <strong>Supabase Storage</strong><br>
+              • Security: <strong>Helmet</strong>, <strong>CORS</strong>, rate limiting<br>
+              <br><br>
             </p>
-        </footer>
-    </body>
+          </p>
+          <button x-on:click="details = null" id="btn-small">./close.sh</button>
+          <span class="blinking-cursor">></span>
+        </div>
+
+        <!-- Project Beta -->
+        <li>Project Beta - Graph generator telegram bot</li>
+        ---><button
+          x-on:click="details === 2 ? details = null : details = 2"
+          id="btn"
+        >
+          ./Details.sh
+        </button>
+        <div x-show="details === 2" x-transition>
+          <p>>Details about the project</p>
+          <p>
+            This project involves creating a Telegram bot that generates graphs
+            based on user input. It uses Python and libraries like Matplotlib
+            for graph generation.
+          </p>
+          <button x-on:click="details = null" id="btn-small">./close.sh</button>
+          <span class="blinking-cursor"></span>
+        </div>
+
+        <!-- Project Gamma -->
+        <li>Project Gamma - Audio to text bot</li>
+        ---><button
+          x-on:click="details === 3 ? details = null : details = 3"
+          id="btn"
+        >
+          ./Details.sh
+        </button>
+        <div x-show="details === 3" x-transition>
+          <p>>Details about the project</p>
+          <p>
+            This project is a bot that converts audio files to text using speech
+            recognition APIs. It supports multiple languages and formats.
+          </p>
+          <button x-on:click="details = null" id="btn-small">./close.sh</button>
+          <span class="blinking-cursor"></span>
+        </div>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="mt-20 ">
+      <h2 class="text-2xl font-bold">contact.sh</h2>
+      <p class="mt-4">
+        Email: idk <br />
+        GitHub: github.com/Hadylol<br />
+        LinkedIn: not yet lol
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer x-data class="mt-20 text-center">
+      <p>
+        Copyright &copy;<span x-text="new Date().getFullYear()"></span>
+        its mine !
+      </p>
+    </footer>
+  </div>
+  </body>
 </html>
